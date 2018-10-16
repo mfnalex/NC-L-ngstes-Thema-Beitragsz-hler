@@ -16,10 +16,6 @@ URL="https://forum.netcup.de/sonstiges/smalltalk/1051-das-längste-thema/?pageNo
 wget -q -O - "${URL}"999999999 > lastpage
 LASTPAGE=$(grep "<title>" lastpage | awk '{print $6}')
 
-echo "Letzte Seite: $LASTPAGE"
-
-
-
 if [ ! -f 1 ]; then
   echo
   echo "Achtung: Das Script muss einmalig alle Seiten des Themas herunterladen. Dies erfordert $LASTPAGE HTTPS-Requests. Fortfahren auf eigene Gefahr. Nach dem ersten Durchgang werden nur noch geänderte / neue Seiten heruntergeladen."
