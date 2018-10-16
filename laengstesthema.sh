@@ -23,9 +23,7 @@ LASTPAGE=$(echo "$LASTPAGE" | awk '{print $6}')
 
 if [ ! -f 1 ]; then
   echo
-  echo "Achtung: Das Script muss einmalig alle Seiten des Themas herunterladen."
-  echo "Dies erfordert $LASTPAGE HTTPS-Requests. Fortfahren auf eigene Gefahr."
-  echo "Nach dem ersten Durchgang werden nur noch geänderte / neue Seiten heruntergeladen."
+  echo "Achtung: Das Script muss einmalig alle Seiten des Themas herunterladen. Dies erfordert $LASTPAGE HTTPS-Requests. Fortfahren auf eigene Gefahr. Nach dem ersten Durchgang werden nur noch geänderte / neue Seiten heruntergeladen."
   read -n 1 -s -r -p "Beliebige Taste drücken zum Fortfahren..."
   echo
 fi
