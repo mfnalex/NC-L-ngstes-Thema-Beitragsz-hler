@@ -11,6 +11,8 @@ URL="https://forum.netcup.de/sonstiges/smalltalk/1051-das-längste-thema/?pageNo
 wget -q -O - "${URL}"999999999 > lastpage
 LASTPAGE=$(grep "<title>" lastpage | awk '{print $6}')
 
+echo "Letzte Seite: $LASTPAGE"
+
 USER=$1
 if [[ "$1" == "" ]]; then
   read -p "Username: " USER
