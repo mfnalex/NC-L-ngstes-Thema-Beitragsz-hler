@@ -21,6 +21,15 @@ wget -q -O - "${URL}"999999999 > lastpage
 LASTPAGE=$(grep "<title>Das längste Thema - Seite" lastpage)
 LASTPAGE=$(echo "$LASTPAGE" | awk '{print $6}')
 
+if [ ! -f 1 ]; then
+  echo
+  echo "Achtung: Das Script muss einmalig alle Seiten des Themas herunterladen."
+  echo "Dies erfordert $LASTPAGE HTTPS-Requests. Fortfahren auf eigene Gefahr."
+  echo "Nach dem ersten Durchgang werden nur noch geänderte / neue Seiten heruntergeladen."
+  read -n 1 -s -r -p "Beliebige Taste drücken zum Fortfahren..."
+  echo
+fi
+
 {
 for PAGE in $(seq 1 "$LASTPAGE"); do
         if [ ! -f "$PAGE" ] || [ "$PAGE" -eq "$LASTPAGE" ]; then
