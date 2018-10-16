@@ -28,6 +28,7 @@ for PAGE in $(seq 1 "$LASTPAGE"); do
         if [ ! -f "$PAGE" ] || [ "$PAGE" -eq "$LASTPAGE" ]; then
                 echo Lade Seite "$PAGE"... >&2
                 wget -q -O - "${URL}${PAGE}" > "$PAGE"
+                sleep 0.1
         fi
 
         grep "$PATTERN" "$PAGE" || true
