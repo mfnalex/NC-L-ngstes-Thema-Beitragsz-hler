@@ -3,23 +3,18 @@
 # Benutzung: ./laengstesthema.sh <username>
 
 set -e
+mkdir -p /tmp/laengstesthema
+cd /tmp/laengstesthema
+
+PATTERN="<span itemprop=\"name\">$USER</span>"
+URL="https://forum.netcup.de/sonstiges/smalltalk/1051-das-längste-thema/?pageNo="
+wget -q -O - "${URL}"999999999 > lastpage
+LASTPAGE=$(grep "<title>" lastpage | awk '{print $6}')
 
 USER=$1
 if [[ "$1" == "" ]]; then
   read -p "Username: " USER
 fi
-
-
-mkdir -p /tmp/laengstesthema
-cd /tmp/laengstesthema
-
-
-PATTERN="<span itemprop=\"name\">$USER</span>"
-URL="https://forum.netcup.de/sonstiges/smalltalk/1051-das-längste-thema/?pageNo="
-
-wget -q -O - "${URL}"999999999 > lastpage
-LASTPAGE=$(grep "<title>" lastpage)
-LASTPAGE=$(echo "$LASTPAGE" | awk '{print $6}')
 
 if [ ! -f 1 ]; then
   echo
