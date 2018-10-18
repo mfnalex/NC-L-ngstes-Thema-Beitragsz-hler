@@ -31,9 +31,12 @@ for PAGE in $(seq 1 "$LASTPAGE"); do
         if [ ! -f "$PAGE" ] || [ "$PAGE" -eq "$LASTPAGE" ]; then
                 echo Lade Seite "$PAGE"... >&2
                 wget -q -O - "${URL}${PAGE}" > "$PAGE"
-                sleep $DELAY
-                if [[ "$RANDOMMODE" -eq 1 ]]; then
-                  sleep $(( ( RANDOM % RANDOMMAXDELAY )  + 1 ))
+                if [[ "$PAGE" -ne "$LASTPAGE" ]];
+                then
+                  sleep $DELAY
+                  if [[ "$RANDOMMODE" -eq 1 ]]; then
+                    sleep $(( ( RANDOM % RANDOMMAXDELAY )  + 1 ))
+                  fi
                 fi
         fi
 
