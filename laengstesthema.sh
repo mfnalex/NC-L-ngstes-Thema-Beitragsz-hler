@@ -12,7 +12,7 @@ if [[ "$1" == "" ]]; then
 fi
 
 DELAY=0.5
-RANDOM=1 # 1 = an
+RANDOMMODE=1 # 1 = an
 RANDOMMAXDELAY=60
 PATTERN="<span itemprop=\"name\">$USER</span>"
 URL="https://forum.netcup.de/sonstiges/smalltalk/1051-das-längste-thema/?pageNo="
@@ -32,8 +32,8 @@ for PAGE in $(seq 1 "$LASTPAGE"); do
                 echo Lade Seite "$PAGE"... >&2
                 wget -q -O - "${URL}${PAGE}" > "$PAGE"
                 sleep $DELAY
-                if [[ "$RANDOM" -eq 1 ]]; then
-                  sleep $(( ( RANDOM % $RANDOMMAXDELAY )  + 1 ))
+                if [[ "$RANDOMMODE" -eq 1 ]]; then
+                  sleep $(( ( RANDOM % RANDOMMAXDELAY )  + 1 ))
                 fi
         fi
 
